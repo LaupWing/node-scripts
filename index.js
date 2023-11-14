@@ -1,21 +1,12 @@
-const csvFilePath="./private/XLS231114093526.csv"
-const csv=require('csvtojson/v2')
-   csv()
-   .fromFile(csvFilePath)
-   .then((jsonObj)=>{
-      console.log(jsonObj);
-      /**
-       * [
-       * 	{a:"1", b:"2", c:"3"},
-       * 	{a:"4", b:"5". c:"6"}
-       * ]
-       */ 
-   })
-   
-   
-const main  = async () => {
-   // Async / await usage
-   const jsonArray=await csv().fromFile(csvFilePath);
-}
+const data = require('./private/data.json');
+const to_compare = require('./private/csv.json');
 
-main()
+
+const test = data.filter(item => {
+   if (!to_compare.find(x => x.Omschrijving === item.description)) {
+      console.log(item)
+      return item
+   }
+})
+
+console.log(test.length)
